@@ -24,12 +24,12 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t accuknox-devops-trainee-practical-assessment :latest .
+        docker build -t accuknox-devops-trainee-practical-assessment:latest .
 
     - name: Push Docker image to Minikube
       run: |
         docker tag accuknox-devops-trainee-practical-assessment:latest amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-        docker push your-image-name:latest
+        docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
 
     - name: Deploy to Minikube
       run: |
