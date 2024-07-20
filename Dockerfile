@@ -26,3 +26,4 @@ ENTRYPOINT ["sh", "-c", "/app/wisecow.sh"]
 # Set PATH environment variable
 ENV PATH="/usr/games:${PATH}"
 
+
