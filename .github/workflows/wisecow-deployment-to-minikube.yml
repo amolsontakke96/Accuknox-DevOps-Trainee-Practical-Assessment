@@ -14,14 +14,13 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Set up Minikube
-      uses: medyagh/setup-minikube@latest
+      uses: medyagh/setup-minikube@master
 
     - name: Start Minikube
       run: |
         minikube start --force --driver=docker
         minikube status
         kubectl config current-context
-        minikube kubectl -- get pods
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -44,4 +43,4 @@ jobs:
     - name: Deploy to Minikube
       run: |
         kubectl apply -f wisecow.yaml
-        kubectl get pods
+        kubectl wait --for=condition=ready pod
