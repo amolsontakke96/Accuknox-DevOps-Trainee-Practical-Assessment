@@ -20,15 +20,6 @@ jobs:
       run: |
         minikube start --driver=docker
         minikube status
-        
-    - name: Create kube config
-      run: |
-        mkdir ${HOME}/.kube/
-        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode >> ${HOME}/.kube/config
-        cat ${HOME}/.kube/config
-
-    - name: Use context
-      run: kubectl config use-context minikube
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
