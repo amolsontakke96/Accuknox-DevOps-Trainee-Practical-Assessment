@@ -50,6 +50,10 @@ jobs:
         kubectl apply -f wisecow.yaml
         kubectl wait --for=condition=ready pod -l app=wisecow
         kubectl get pods -A
+        minikube status
+        minikube ip
+        kubectl cluster-info
+        kubectl get nodes
         
     - name: Test service URLs
       run: |
