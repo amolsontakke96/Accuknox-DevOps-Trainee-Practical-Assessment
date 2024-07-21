@@ -1,52 +1,28 @@
-name: Build and Deploy to Minikube
-
+name: CI
 on:
-  push:
-    branches:
-      - main  # Change this to your default branch if it's different
-
+  - push
 jobs:
-  build-and-deploy:
+  job1:
     runs-on: ubuntu-latest
-
+    name: build example and deploy to minikube
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-    
-    - name: Set up Minikube
-      uses: amolsontakke96/setup-minikube@latest
-    
-    - name: Start Minikube
-      run: |
-        minikube start --driver=docker
-        minikube status
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v1
+    - uses: actions/checkout@v4
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Build Docker image
+        repository: amolsontakke96/Accuknox-DevOps-Trainee-Practical-Assessment
+    - name: Start minikube
+      uses: medyagh/setup-minikube@latest
+    - name: Try the cluster!
+      run: kubectl get pods -A
+    - name: Build image
       run: |
-        docker build -t accuknox-devops-trainee-practical-assessment:latest .
-
-    - name: Push Docker image to Minikube
-      run: |
-        docker tag accuknox-devops-trainee-practical-assessment:latest amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-        docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-
-    - name: Deploy to Minikube
-      run: |
+        minikube image build -t accuknox-devops-trainee-practical-assessment:latest .        
+    - name: Deploy to minikube
+      run:
         kubectl apply -f wisecow.yaml
         kubectl wait --for=condition=ready pod -l app=wisecow
-        kubectl get pods -A
-        
     - name: Test service URLs
       run: |
         minikube service list
-        minikube service wisecow-service
-        kubectl get pods --watch
+        minikube service wisecow-service --url
+        echo "------------------opening the service------------------"
+        curl $(minikube service wisecow-service --url) 
