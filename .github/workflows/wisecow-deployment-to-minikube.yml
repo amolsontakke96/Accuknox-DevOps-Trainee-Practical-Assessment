@@ -13,14 +13,12 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
     
-    - name: Set up Minikube
-      uses: medyagh/setup-minikube@master
-
     - name: Start Minikube
-      run: |
-        minikube start --force --driver=docker
-        minikube status
-        kubectl config current-context
+        uses: medyagh/setup-minikube@latest
+        with:
+          minikube_version: latest
+          kubernetes_version: latest
+          driver: docker
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
