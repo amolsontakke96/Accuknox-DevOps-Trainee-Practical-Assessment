@@ -17,8 +17,10 @@ jobs:
       uses: medyagh/setup-minikube@latest
 
     - name: Start Minikube
-      run: minikube start --driver=docker
-
+      run: |
+        minikube start --driver=docker
+        minikube status
+        kubectl config current-context
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -41,3 +43,4 @@ jobs:
     - name: Deploy to Minikube
       run: |
         kubectl apply -f wisecow.yaml
+        kubectl get pods
