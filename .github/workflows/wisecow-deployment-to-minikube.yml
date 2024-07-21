@@ -21,6 +21,7 @@ jobs:
         minikube start --driver=docker
         minikube status
         kubectl config current-context
+        minikube kubectl -- get pods
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
