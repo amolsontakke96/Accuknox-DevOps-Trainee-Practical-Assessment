@@ -17,7 +17,6 @@ jobs:
       uses: medyagh/setup-minikube@master
       with:
         minikube-version: v1.33.1
-        driver: docker
     
     - name: Start Minikube
       run: |
