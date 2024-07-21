@@ -44,4 +44,4 @@ jobs:
       run: |
         kubectl apply -f wisecow.yaml
         kubectl get pods
-        kubectl wait --for=condition=Ready pod/wisecow-deployment
+        kubectl wait --for=condition=Ready deployments/wisecow-deployment
