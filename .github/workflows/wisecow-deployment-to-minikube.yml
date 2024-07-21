@@ -1,32 +1,27 @@
-name: CI
-on:
-  - push
+name: Deploy to Minikube using GitHub Actions
+
+on: [push]
+  
 jobs:
   job1:
     runs-on: ubuntu-latest
-    name: build example and deploy to minikube
+    name: build Node.js Docker Image and deploy to minikube
     steps:
-    - uses: actions/checkout@v4
-      with:
-        repository: amolsontakke96/Accuknox-DevOps-Trainee-Practical-Assessment
+    - uses: actions/checkout@v2
     - name: Start minikube
-      id: minikube
-      uses: medyagh/setup-minikube@latest
-    - name: Try the cluster!
+      uses: medyagh/setup-minikube@master
+    - name: Try the cluster !
       run: kubectl get pods -A
     - name: Build image
       run: |
-        export SHELL=/bin/bash
-        eval $(minikube -p minikube docker-env)
-        docker build -t accuknox-devops-trainee-practical-assessment:latest . 
-        echo -n "verifying images:"
-        docker images
+          export SHELL=/bin/bash
+          eval $(minikube -p minikube docker-env)
+          docker build -t accuknox-devops-trainee-practical-assessment:latest .
+          echo -n "verifying images:"
+          docker images         
     - name: Deploy to minikube
       run:
         kubectl apply -f wisecow.yaml
     - name: Test service URLs
       run: |
-        minikube service list
-        minikube service wisecow-service --url
-        echo "------------------opening the service------------------"
-        curl $(minikube service wisecow-service --url) 
+          minikube service list
