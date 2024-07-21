@@ -42,6 +42,9 @@ jobs:
     
     - name: Configure kubectl
       run: |
+        sudo apt-get update
+        sudo apt-get install -y kubectl
+        kubectl version --client
         minikube kubectl -- get pods
         kubectl config use-context minikube
         
