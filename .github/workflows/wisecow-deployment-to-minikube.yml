@@ -44,4 +44,3 @@ jobs:
       run: |
         kubectl apply -f wisecow.yaml
         kubectl get pods
-        kubectl wait --for=condition=Ready -l app=wisecow
