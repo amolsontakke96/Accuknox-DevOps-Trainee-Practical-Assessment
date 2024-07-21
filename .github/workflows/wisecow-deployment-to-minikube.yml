@@ -41,7 +41,7 @@ jobs:
 
     - name: Deploy to Minikube
       run: |
-        kubectl apply -f deploy/wisecow.yaml
+        kubectl apply -f wisecow.yaml
         kubectl wait --for=condition=ready pod -l app=wisecow
         kubectl get pods -A
         
