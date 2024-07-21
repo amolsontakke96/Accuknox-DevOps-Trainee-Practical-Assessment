@@ -15,6 +15,8 @@ jobs:
       run: kubectl get pods -A
     - name: Build image
       run: |
+        export SHELL=/bin/bash
+        eval $(minikube -p minikube docker-env)
         minikube image build -t accuknox-devops-trainee-practical-assessment:latest .        
     - name: Deploy to minikube
       run:
