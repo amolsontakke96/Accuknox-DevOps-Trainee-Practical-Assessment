@@ -55,3 +55,5 @@ jobs:
       run: |
         minikube service list
         echo "Service URL: http://$(minikube ip):$(kubectl get service wisecow-service -o=jsonpath='{.spec.ports[0].nodePort}')"
+
+        
