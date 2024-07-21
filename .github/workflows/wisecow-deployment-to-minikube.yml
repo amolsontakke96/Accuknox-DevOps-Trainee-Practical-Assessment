@@ -14,11 +14,9 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Start Minikube
-        uses: medyagh/setup-minikube@latest
-        with:
-          minikube_version: latest
-          kubernetes_version: latest
-          driver: docker
+      run: |
+        minikube start --drive=docker
+        minikube status
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
