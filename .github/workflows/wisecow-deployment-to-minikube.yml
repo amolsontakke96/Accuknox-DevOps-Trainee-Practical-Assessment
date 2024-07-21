@@ -17,7 +17,7 @@ jobs:
       uses: medyagh/setup-minikube@latest
 
     - name: Start Minikube
-      run: minikube start --driver=none
+      run: minikube start --driver=docker
 
 
     - name: Set up Docker Buildx
