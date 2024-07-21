@@ -32,7 +32,6 @@ jobs:
 
     - name: Build Docker image
       run: |
-        eval $(minikube -p minikube docker-env)
         docker build -t accuknox-devops-trainee-practical-assessment:latest .
 
     - name: Push Docker image to Minikube
