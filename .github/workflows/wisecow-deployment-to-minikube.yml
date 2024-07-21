@@ -19,7 +19,6 @@ jobs:
     - name: Deploy to minikube
       run:
         kubectl apply -f wisecow.yaml
-        kubectl wait --for=condition=ready pod -l app=wisecow
     - name: Test service URLs
       run: |
         minikube service list
