@@ -15,8 +15,8 @@ jobs:
     
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
-      with:
-        minikube-version: v1.33.1
+      run: |
+        minikube version
     
     - name: Start Minikube
       run: |
