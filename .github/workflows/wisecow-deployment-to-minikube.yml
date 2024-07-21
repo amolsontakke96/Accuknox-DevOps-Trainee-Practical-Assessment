@@ -15,13 +15,12 @@ jobs:
     
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
-      run: |
-        minikube version
-    
+      
     - name: Start Minikube
       run: |
         minikube start --driver=docker
         minikube status
+        minikube version
         eval $(minikube -p minikube docker-env)
 
     - name: Set up Docker Buildx
