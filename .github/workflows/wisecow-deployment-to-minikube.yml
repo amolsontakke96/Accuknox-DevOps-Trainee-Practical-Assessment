@@ -17,6 +17,7 @@ jobs:
       uses: medyagh/setup-minikube@latest
       with:
         minikube-version: v1.33.1
+        driver: docker
         kubectl-version: latest
         start: true
         cache: true
