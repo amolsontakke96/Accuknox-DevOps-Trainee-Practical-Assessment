@@ -57,6 +57,7 @@ jobs:
         minikube ip
         kubectl cluster-info
         kubectl get nodes
+        minikube kubectl -- get pods
         
     - name: Test service URLs
       run: |
