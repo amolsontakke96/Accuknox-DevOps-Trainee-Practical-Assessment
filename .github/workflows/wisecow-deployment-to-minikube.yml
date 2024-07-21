@@ -13,10 +13,13 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
     
+    - name: Set up Minikube
+      uses: medyagh/setup-minikube@latest
+    
     - name: Start Minikube
       run: |
-        minikube start --driver=docker
-        minikube status
+        sudo minikube start --driver=docker
+        sudo minikube status
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -38,5 +41,5 @@ jobs:
 
     - name: Deploy to Minikube
       run: |
-        kubectl apply -f wisecow.yaml
-        kubectl get pods
+        sudo kubectl apply -f wisecow.yaml
+        sudo kubectl get pods
