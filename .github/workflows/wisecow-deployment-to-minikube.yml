@@ -15,7 +15,7 @@ jobs:
     
     - name: Start Minikube
       run: |
-        minikube start --drive=docker
+        minikube start --driver=docker
         minikube status
 
     - name: Set up Docker Buildx
