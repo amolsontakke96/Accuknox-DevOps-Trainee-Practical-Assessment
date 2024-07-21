@@ -14,10 +14,13 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Set up Minikube
-      uses: medyagh/setup-minikube@master
+      uses: medyagh/setup-minikube@v2
       with:
         minikube-version: v1.33.1
         kubectl-version: latest
+        start: true
+        cache: true
+        wait: all
     
     - name: Start Minikube
       run: |
