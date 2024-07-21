@@ -12,6 +12,13 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
+    
+    - name: Set up Minikube
+      uses: medyagh/setup-minikube@latest
+
+    - name: Start Minikube
+      run: minikube start --driver=docker
+
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
