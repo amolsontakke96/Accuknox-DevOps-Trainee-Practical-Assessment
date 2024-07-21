@@ -18,7 +18,7 @@ jobs:
 
     - name: Start Minikube
       run: |
-        minikube start --driver=docker
+        minikube start --driver=docker --force
         minikube status
         kubectl config current-context
         minikube kubectl -- get pods
