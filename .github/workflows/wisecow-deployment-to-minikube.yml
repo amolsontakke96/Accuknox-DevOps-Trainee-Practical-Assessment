@@ -17,7 +17,9 @@ jobs:
       run: |
         export SHELL=/bin/bash
         eval $(minikube -p minikube docker-env)
-        minikube image build -t accuknox-devops-trainee-practical-assessment:latest .        
+        docker build -t accuknox-devops-trainee-practical-assessment:latest . 
+        echo -n "verifying images:"
+        docker images
     - name: Deploy to minikube
       run:
         kubectl apply -f wisecow.yaml
