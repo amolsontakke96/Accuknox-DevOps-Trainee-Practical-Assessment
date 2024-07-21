@@ -60,10 +60,8 @@ jobs:
         run: |
           minikube status
           minikube ip
-    
+          
     - name: Configure kubectl
         run: |
           kubectl cluster-info  # Verify kubectl can connect to Minikube
           kubectl get nodes     # Optionally, verify nodes in the cluster
-
-        
