@@ -55,5 +55,15 @@ jobs:
       run: |
         minikube service list
         echo "Service URL: http://$(minikube ip):$(kubectl get service wisecow-service -o=jsonpath='{.spec.ports[0].nodePort}')"
+    
+    - name: Set up Minikube environment
+        run: |
+          minikube status
+          minikube ip
+    
+    - name: Configure kubectl
+        run: |
+          kubectl cluster-info  # Verify kubectl can connect to Minikube
+          kubectl get nodes     # Optionally, verify nodes in the cluster
 
         
