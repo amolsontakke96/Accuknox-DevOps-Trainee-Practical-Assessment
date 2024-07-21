@@ -10,6 +10,7 @@ jobs:
       with:
         repository: amolsontakke96/Accuknox-DevOps-Trainee-Practical-Assessment
     - name: Start minikube
+      id: minikube
       uses: medyagh/setup-minikube@latest
     - name: Try the cluster!
       run: kubectl get pods -A
