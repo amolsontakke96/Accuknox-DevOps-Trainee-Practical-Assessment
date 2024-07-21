@@ -39,7 +39,12 @@ jobs:
       run: |
         docker tag accuknox-devops-trainee-practical-assessment:latest amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
         docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-      
+    
+    - name: Configure kubectl
+      run: |
+        minikube kubectl -- get pods
+        kubectl config use-context minikube
+        
     - name: Deploy to Minikube
       run: |
         kubectl apply -f wisecow.yaml
