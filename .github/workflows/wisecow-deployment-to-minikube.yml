@@ -40,6 +40,15 @@ jobs:
         docker tag accuknox-devops-trainee-practical-assessment:latest amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
         docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
 
+    - name: Create kube config
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode >> ${HOME}/.kube/config
+        cat ${HOME}/.kube/config
+
+    - name: Use context
+      run: kubectl config use-context minikube
+      
     - name: Deploy to Minikube
       run: |
         kubectl apply -f wisecow.yaml
