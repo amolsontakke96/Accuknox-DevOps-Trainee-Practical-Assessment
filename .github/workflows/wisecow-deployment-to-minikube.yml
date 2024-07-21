@@ -41,5 +41,5 @@ jobs:
 
     - name: Deploy to Minikube
       run: |
-        sudo kubectl apply -f wisecow.yaml
-        sudo kubectl get pods
+        kubectl apply -f wisecow.yaml
+        kubectl get pods
