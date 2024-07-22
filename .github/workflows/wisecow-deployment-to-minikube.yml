@@ -32,11 +32,9 @@ jobs:
       run: kubectl get pods -A
     
     - name: Set up kubectl
-      run: |
-          echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
-          cat ${HOME}/.kube/config
-          minikube update-context
-          kubectl config use-context minikube
+      run: kubectl get pods -A
+      env:
+        KUBECONFIG: ${{ secrets.KUBE_CONFIG }}
           
     - name: Deploy to Kubernetes
       run: kubectl get pods -A
