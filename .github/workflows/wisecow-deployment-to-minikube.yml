@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
@@ -64,5 +64,3 @@ jobs:
       run: |
         minikube service list
         echo "Service URL: http://$(minikube ip):$(kubectl get service wisecow-service -o=jsonpath='{.spec.ports[0].nodePort}')"
-
-        
