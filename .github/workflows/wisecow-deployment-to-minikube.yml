@@ -33,6 +33,8 @@ jobs:
     
     - name: Set up kubectl
       run: |
+          minikube delete
+          minikube start --driver=docker --force
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
           cat ${HOME}/.kube/config
           minikube update-context
