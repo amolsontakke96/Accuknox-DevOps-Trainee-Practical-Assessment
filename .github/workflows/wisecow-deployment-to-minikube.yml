@@ -24,17 +24,16 @@ jobs:
       
     - name: Push Docker image
       run: docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-    
-    - name: Set up kubectl
+
+    - name: Set up Minikube
+      uses: medyagh/setup-minikube@master
       run: |
-          lsb_release -a
-          minikube delete
-          minikube start --embed-certs
+          minikube start --driver=docker
           mkdir -p $HOME/.kube/
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
           cat $HOME/.kube/config
-          minikube version
           kubectl get pods -A
+    
           
     - name: Deploy to Kubernetes
       run: kubectl get pods -A
