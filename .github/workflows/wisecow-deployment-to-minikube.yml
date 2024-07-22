@@ -29,9 +29,10 @@ jobs:
       run: kubectl get pods -A
     
     - name: Set up kubectl
-      run: kubectl get pods -A
-      env:
-        KUBECONFIG: ${{ secrets.KUBE_CONFIG }}
+      run: |
+          echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
+          kubectl version --client  # Verify kubectl version and connectivity
+          kubectl get pods -A
           
     - name: Deploy to Kubernetes
       run: kubectl get pods -A
