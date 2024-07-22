@@ -26,6 +26,7 @@ jobs:
       run: |
         kubectl config use-context minikube
         kubectl apply -f wisecow.yaml
+        kubectl wait --for=condition=ready pod -l app=wisecow
         minikube kubectl -- get pods -A
         
     - name: Test service URLs
