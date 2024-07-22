@@ -27,7 +27,8 @@ jobs:
     
     - name: Set up kubectl
       run: |
-          minikube start --driver=docker --force
+          minikube delete
+          minikube start --embed-certs
           mkdir -p $HOME/.kube/
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
           cat $HOME/.kube/config
