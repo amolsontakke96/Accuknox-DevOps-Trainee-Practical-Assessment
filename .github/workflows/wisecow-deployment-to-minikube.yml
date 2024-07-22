@@ -24,11 +24,12 @@ jobs:
       
     - name: Push Docker image
       run: sudo docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-
-    - name: Set up kubectl
-      run: |
-          sudo minikube start --driver=docker --force
-          sudo kubectl get pods -A
           
     - name: Deploy to Kubernetes
-      run: sudo kubectl get pods -A
+      run: |
+          sudo kubectl apply -f wisecow.yaml
+          sudo kubectl wait --for=condition=ready pod -l app=wisecow
+          minikube service list
+          minikube service wisecow-service --url
+          echo "------------------opening the service------------------"
+          curl $(minikube service wisecow-service --url)
