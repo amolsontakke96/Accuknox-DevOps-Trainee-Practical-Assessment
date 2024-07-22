@@ -30,10 +30,13 @@ jobs:
     
     - name: Deploy to Kubernetes
       run: kubectl get pods -A
-
+    
     - name: Set up kubectl
-        run: |
+      run: |
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
           cat ${HOME}/.kube/config
           kubectl config use-context minikube
+          
+    - name: Deploy to Kubernetes
+      run: kubectl get pods -A
 
