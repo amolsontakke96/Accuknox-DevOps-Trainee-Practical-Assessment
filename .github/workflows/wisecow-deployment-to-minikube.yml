@@ -20,15 +20,15 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - name: Build Docker image
-      run: docker build -t amolsontakke96/accuknox-devops-trainee-practical-assessment:latest .
+      run: sudo docker build -t amolsontakke96/accuknox-devops-trainee-practical-assessment:latest .
       
     - name: Push Docker image
-      run: docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
+      run: sudo docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
 
     - name: Set up kubectl
       run: |
-          minikube start --driver=docker
-          kubectl get pods -A
+          sudo minikube start --driver=docker
+          sudo kubectl get pods -A
           
     - name: Deploy to Kubernetes
-      run: kubectl get pods -A
+      run: sudo kubectl get pods -A
