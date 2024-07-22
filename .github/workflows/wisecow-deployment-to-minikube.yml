@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v4
+
+    - name: Set up Minikube
+      uses: medyagh/setup-minikube@master
         
     - name: Login to Container Registry
       uses: docker/login-action@v1
@@ -25,8 +28,7 @@ jobs:
     - name: Push Docker image
       run: docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
 
-    - name: Set up Minikube
-      uses: medyagh/setup-minikube@master
+    - name: Set up kubectl
       run: |
           minikube start --driver=docker
           mkdir -p $HOME/.kube/
