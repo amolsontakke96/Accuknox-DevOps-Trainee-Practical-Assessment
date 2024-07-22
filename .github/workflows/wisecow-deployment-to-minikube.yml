@@ -27,6 +27,7 @@ jobs:
     
     - name: Set up kubectl
       run: |
+          lsb_release -a
           minikube delete
           minikube start --embed-certs
           mkdir -p $HOME/.kube/
