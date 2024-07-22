@@ -12,11 +12,11 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v4
+      with:
+          repository: amolsontakke96/Accuknox-DevOps-Trainee-Practical-Assessment
     
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
-      with:
-        minikube version: 'v1.33.1'
       
     - name: Start Minikube
       run: |
