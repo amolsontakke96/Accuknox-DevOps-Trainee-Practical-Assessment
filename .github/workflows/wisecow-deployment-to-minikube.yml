@@ -35,6 +35,7 @@ jobs:
       run: |
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
           cat ${HOME}/.kube/config
+          minikube update-context
           kubectl config use-context minikube
           
     - name: Deploy to Kubernetes
