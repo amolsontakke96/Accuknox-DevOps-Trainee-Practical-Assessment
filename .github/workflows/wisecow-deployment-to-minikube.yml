@@ -32,6 +32,7 @@ jobs:
           mkdir -p $HOME/.kube/
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
           cat $HOME/.kube/config
+          minikube version
           kubectl get pods -A
           
     - name: Deploy to Kubernetes
