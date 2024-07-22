@@ -38,3 +38,4 @@ jobs:
           echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig.crt
           export KUBECONFIG=$(pwd)/kubeconfig.crt
           kubectl config view
+
