@@ -18,6 +18,12 @@ jobs:
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
       
+    - name: Minikube setup
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+        cat ${HOME}/.kube/config
+        
     - name: Start Minikube
       run: |
         minikube start --driver=docker
