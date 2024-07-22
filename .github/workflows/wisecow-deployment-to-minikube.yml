@@ -14,12 +14,14 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Set up Minikube
-      id: minikube
-      uses: medyagh/setup-minikube@latest
+      uses: manusa/actions-setup-minikube@v2.11.0
+      with:
+        minikube version: 'v1.33.0'
+        kubernetes version: 'v1.30.0'
+        github token: ${{ secrets.TOKEN_GITHUB }}
       
     - name: Start Minikube
       run: |
         minikube start --driver=docker
-        eval $(minikube -p minikube docker-env)
         minikube version
         kubectl get pods
