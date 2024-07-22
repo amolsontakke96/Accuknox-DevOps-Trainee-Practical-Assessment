@@ -21,6 +21,10 @@ jobs:
     - name: Start Minikube
       run: |
         minikube start --driver=docker
-        minikube version
+        eval $(minikube -p minikube docker-env)
+        minikube status
         kubectl get nodes
         minikube kubectl -- get pods
+        kubectl apply -f wisecow.yaml
+        kubectl wait --for=condition=ready pod -l app=wisecow
+        kubectl get pods -A
