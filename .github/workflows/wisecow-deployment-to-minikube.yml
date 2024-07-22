@@ -15,6 +15,14 @@ jobs:
     
     - name: Set up Minikube
       uses: opsgang/ga-setup-minikube@v0.1.1
+
+    - name: Set up Minikube
+      run: |
+        curl -LO https://github.com/kubernetes/minikube/releases/download/v1.4.0/minikube-linux-amd64
+        chmod +x minikube-linux-amd64
+        mv minikube-linux-amd64 $HOME/bin/minikube
+      env:
+       PATH: $HOME/bin:$PATH
       
     - name: Start Minikube
       run: |
