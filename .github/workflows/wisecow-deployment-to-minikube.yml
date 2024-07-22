@@ -15,14 +15,15 @@ jobs:
     
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
+      
+    - name: Login to Container Registry
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
         
-    - name: Start Minikube
-      run: |
-        minikube start --driver=docker
-        eval $(minikube -p minikube docker-env)
-        minikube status
-        kubectl get nodes
-        minikube kubectl -- get pods
-        kubectl apply -f wisecow.yaml
-        kubectl wait --for=condition=ready pod -l app=wisecow
-        kubectl get pods -A
+    - name: Build Docker image
+      run: docker build -t amolsontakke96/accuknox-devops-trainee-practical-assessment:latest .
+      
+    - name: Push Docker image
+      run: docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
