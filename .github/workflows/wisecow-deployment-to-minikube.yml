@@ -18,17 +18,17 @@ jobs:
       
     - name: Start Minikube
       run: |
-        sudo minikube start --driver=docker
+        minikube start --driver=docker
         eval $(minikube -p minikube docker-env)
-        sudo minikube version
+        minikube version
         
     - name: Deploy to Minikube
       run: |
-        sudo kubectl apply -f wisecow.yaml
-        sudo kubectl wait --for=condition=ready pod -l app=wisecow
-        sudo minikube kubectl -- get pods
+        kubectl apply -f wisecow.yaml
+        kubectl wait --for=condition=ready pod -l app=wisecow
+        minikube kubectl -- get pods
         
     - name: Test service URLs
       run: |
-        sudo minikube service list
-        echo "Service URL: http://$(sudo minikube ip):$(sudo kubectl get service wisecow-service -o=jsonpath='{.spec.ports[0].nodePort}')"
+        minikube service list
+        echo "Service URL: http://$(minikube ip):$(kubectl get service wisecow-service -o=jsonpath='{.spec.ports[0].nodePort}')"
