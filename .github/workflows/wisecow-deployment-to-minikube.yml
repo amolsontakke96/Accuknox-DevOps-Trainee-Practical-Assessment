@@ -27,7 +27,7 @@ jobs:
 
     - name: Set up kubectl
       run: |
-          sudo minikube start --driver=docker
+          sudo minikube start --driver=docker --force
           sudo kubectl get pods -A
           
     - name: Deploy to Kubernetes
