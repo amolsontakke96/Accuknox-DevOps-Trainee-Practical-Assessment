@@ -19,8 +19,8 @@ jobs:
     - name: Login to Container Registry
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.DOCKER_PASSWORD }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
         
     - name: Build Docker image
       run: docker build -t amolsontakke96/accuknox-devops-trainee-practical-assessment:latest .
