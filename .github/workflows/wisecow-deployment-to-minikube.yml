@@ -25,9 +25,6 @@ jobs:
     - name: Push Docker image
       run: docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
     
-    - name: Deploy to Kubernetes
-      run: kubectl get pods -A
-    
     - name: Set up kubectl
       run: |
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
