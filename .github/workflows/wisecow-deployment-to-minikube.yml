@@ -30,7 +30,7 @@ jobs:
           minikube start --driver=docker --force
           mkdir -p $HOME/.kube/
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
-          kubectl version --client  # Verify kubectl version and connectivity
+          cat $HOME/.kube/config
           kubectl get pods -A
           
     - name: Deploy to Kubernetes
