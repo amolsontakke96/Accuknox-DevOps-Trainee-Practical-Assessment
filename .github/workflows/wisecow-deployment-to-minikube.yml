@@ -31,14 +31,7 @@ jobs:
     - name: Set up kubectl
       run: |
           minikube start --driver=docker
-          mkdir -p $HOME/.kube/
-          echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
-          cat $HOME/.kube/config
-          minikube_ip=$(minikube ip)
-          ping -c 5 $minikube_ip
-
           kubectl get pods -A
-    
           
     - name: Deploy to Kubernetes
       run: kubectl get pods -A
