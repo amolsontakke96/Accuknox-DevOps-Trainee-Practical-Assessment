@@ -32,10 +32,8 @@ jobs:
       run: kubectl get pods -A
 
     - name: Set up kubectl
-        env:
-          KUBECONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
         run: |
-          echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig.crt
-          export KUBECONFIG=$(pwd)/kubeconfig.crt
-          kubectl config view
+          echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+          cat ${HOME}/.kube/config
+          kubectl config use-context minikube
 
