@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Set up Minikube
-      uses: medyagh/setup-minikube@master
+      uses: opsgang/ga-setup-minikube@v0.1.1
       
     - name: Start Minikube
       run: |
@@ -25,38 +25,21 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
+      with:
+         minikube-version: 1.33.1
+         k8s-verison: 1.28.4
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Build Docker image
-      run: |
-        docker build -t accuknox-devops-trainee-practical-assessment:latest .
-
-    - name: Push Docker image to Minikube
-      run: |
-        docker tag accuknox-devops-trainee-practical-assessment:latest amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-        docker push amolsontakke96/accuknox-devops-trainee-practical-assessment:latest
-    
-    - name: Configure kubectl
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y kubectl
-        kubectl version --client
-        minikube kubectl -- get pods
-        kubectl config use-context minikube
         
     - name: Deploy to Minikube
       run: |
         kubectl apply -f wisecow.yaml
         kubectl wait --for=condition=ready pod -l app=wisecow
         kubectl get pods -A
-        minikube status
-        minikube ip
-        kubectl cluster-info
         kubectl get nodes
         minikube kubectl -- get pods
         
