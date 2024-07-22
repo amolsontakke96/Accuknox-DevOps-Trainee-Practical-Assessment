@@ -27,6 +27,7 @@ jobs:
     
     - name: Set up kubectl
       run: |
+          minikube start --driver=docker --force
           mkdir -p $HOME/.kube/
           echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > $HOME/.kube/config
           kubectl version --client  # Verify kubectl version and connectivity
