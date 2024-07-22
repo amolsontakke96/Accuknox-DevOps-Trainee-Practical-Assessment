@@ -23,4 +23,5 @@ jobs:
       run: |
         minikube start --driver=docker
         minikube version
-        kubectl get pods
+        kubectl get nodes
+        minikube kubectl -- get pods
