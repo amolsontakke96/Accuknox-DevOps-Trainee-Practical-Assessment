@@ -16,8 +16,7 @@ jobs:
     - name: Set up Minikube
       uses: medyagh/setup-minikube@master
       with:
-        minikube version: 'v1.33.0'
-        kubernetes version: 'v1.30.0'
+        minikube version: 'v1.33.1'
         github token: ${{ secrets.TOKEN_GITHUB }}
       
     - name: Start Minikube
