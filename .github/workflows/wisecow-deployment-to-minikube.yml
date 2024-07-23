@@ -33,4 +33,3 @@ jobs:
           sudo minikube service wisecow-service --url
           echo "------------------opening the service------------------"
           curl $(sudo minikube service wisecow-service --url)
-
