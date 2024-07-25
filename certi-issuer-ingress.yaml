@@ -31,12 +31,16 @@ metadata:
   name: wisecow-ingress
   annotations:
     cert-manager.io/cluster-issuer: "test-selfsigned"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
       - wisecow.amolsontakke-testing.com
     secretName: selfsigned-cert-tls
+  ingressClassName: nginx
   rules:
   - host: "wisecow.amolsontakke-testing.com"
     http:
