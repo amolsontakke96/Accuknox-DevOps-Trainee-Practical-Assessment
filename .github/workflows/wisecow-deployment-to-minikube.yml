@@ -27,14 +27,9 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-          sudo microk8s.kubectl delete -f wisecow.yaml
           sudo microk8s.kubectl apply -f wisecow.yaml
           sudo microk8s.kubectl wait --for=condition=ready pod -l app=wisecow
-          sudo sudo microk8s.kubectl delete -f certi-issuer-ingress.yaml
           sudo sudo microk8s.kubectl apply -f certi-issuer-ingress.yaml
-          sudo microk8s.kubectl get cert
-          sudo microk8s.kubectl get order
-          sudo microk8s.kubectl get challenge
           sudo microk8s.kubectl get service
           sudo microk8s.kubectl get service wisecow-service
           echo "------------------opening the service------------------"
