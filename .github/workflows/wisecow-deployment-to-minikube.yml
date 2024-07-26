@@ -27,7 +27,7 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-          sudo microk8s.kubectl apply -f certi-issuer-ingress.yaml
+          sudo microk8s.kubectl apply -f Deployment-svc-certi-issuer-ingress.yaml
           sudo microk8s.kubectl wait --for=condition=ready pod -l app=wisecow
           sudo microk8s.kubectl get service
           sudo microk8s.kubectl get service wisecow-service
