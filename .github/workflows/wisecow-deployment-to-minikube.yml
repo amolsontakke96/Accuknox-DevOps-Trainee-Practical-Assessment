@@ -27,10 +27,10 @@ jobs:
           
     - name: Deploy to Kubernetes
       run: |
-          sudo kubectl apply -f wisecow.yaml
-          sudo kubectl wait --for=condition=ready pod -l app=wisecow
-          sudo minikube service list
-          sudo minikube service wisecow-service --url
+          sudo microk8s.kubectl apply -f wisecow.yaml
+          sudo microk8s.kubectl wait --for=condition=ready pod -l app=wisecow
+          sudo microk8s.kubectl get service
+          sudo microk8s.kubectl get service wisecow-service
           echo "------------------opening the service------------------"
-          curl $(sudo minikube service wisecow-service --url)
+          curl $(sudo microk8s.kubectl service wisecow-service --url)
 
