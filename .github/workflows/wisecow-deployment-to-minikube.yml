@@ -35,4 +35,3 @@ jobs:
           sudo microk8s.kubectl get service
           sudo microk8s.kubectl get service wisecow-service
           echo "------------------opening the service------------------"
-
