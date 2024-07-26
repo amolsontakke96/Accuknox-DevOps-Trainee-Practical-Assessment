@@ -27,7 +27,7 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-          sudo microk8s.kubectl apply -f wisecow.yaml
+          sudo microk8s.kubectl delete -f wisecow.yaml
           sudo microk8s.kubectl apply -f wisecow.yaml
           sudo sudo microk8s.kubectl delete -f certi-issuer-ingress.yaml
           sudo sudo microk8s.kubectl apply -f certi-issuer-ingress.yaml
